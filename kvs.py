@@ -3,14 +3,19 @@ import threading
 import json
 import time
 from filelock import Timeout, FileLock
+import random
 
 
 class KeyValueStore:
 
-    _DEFAULT_DIRECTORY = ""
+    _DEFAULT_DIRECTORY = ''  # 'C:\\Users\\hrsha\\Documents\\kvs\\'
     _DB_SIZE_LIMIT = 1024 * 1024 * 1024  # Bytes
     _KEY_SIZE_LIMIT = 32  # Chars
     _VALUE_SIZE_LIMIT = 16 * 1024  # Bytes
+    _MAX_UNCOMMITTED_TRANSACTIONS_ALLOWED = 10000
+    _MAX_UNCOMMITTED_SIZE_ALLOWED = 15 * 1024 * 1025  # Bytes
+    _PERIODIC_COMMIT_TIME = 2 * 60  # Seconds
+
     _all_objects = {}
 
     _class_lock = threading.Lock()
@@ -22,18 +27,31 @@ class KeyValueStore:
 
         Note: Users must never use this to initialize the objects.
         Use KeyValueStore.open() to initialize the objects.
+
+        - Initializes some variables
+        - Starts the periodic commit thread
         """
         self._conn = conn
         self._lock = threading.Lock()
         self._system_lock = system_lock
+        self._uncommitted_transactions = 0
+        self._uncommitted_size = 0
+
+        # Start the thread to periodically commit
+        periodic_commit_thread = threading.Thread(target=self._periodic_commit)
+        periodic_commit_thread.start()
+        # Start the thread to periodically delete expired keys
+        periodic_check_for_ttl = threading.Thread(target=self._periodic_check_all_for_ttl)
+        periodic_check_for_ttl.start()
 
     def __del__(self):
         """
         Destructor
-        - Closes the connection to the database
+        - Commits any uncommitted transactions and closes the connection to the database
         - Releases the system level lock for the database file
         """
         if self._conn:
+            self._conn.commit()
             self._conn.close()
         if self._system_lock:
             self._system_lock.release()
@@ -63,11 +81,7 @@ class KeyValueStore:
                 return cls._all_objects[file_address]
 
             # Check if the database exists and create one if it doesn't
-            try:
-                conn = sqlite3.connect(file_address)
-            except Exception as e:
-                print(e)
-                return
+            conn = sqlite3.connect(file_address, check_same_thread=False)
 
             # Create table if doesn't exist
             cls._create_table(conn)
@@ -93,14 +107,16 @@ class KeyValueStore:
         :param ttl: An integer defining the Time To Live in seconds. -1 means infinite
         :return: Void
         """
+        key_len = len(key)
+        string_value = json.dumps(value)
+        value_len = len(string_value)
 
         # Check if the key is oversized
-        if len(key) > KeyValueStore._KEY_SIZE_LIMIT:
+        if key_len > KeyValueStore._KEY_SIZE_LIMIT:
             raise Exception('Size of key must not be more than ' + str(KeyValueStore._KEY_SIZE_LIMIT) + ' chars', 101)
 
         # Check if the value is oversized
-        string_value = json.dumps(value)
-        if len(string_value) >= KeyValueStore._VALUE_SIZE_LIMIT:
+        if value_len >= KeyValueStore._VALUE_SIZE_LIMIT:
             raise Exception('Size of the value must not more than ' + str(KeyValueStore._VALUE_SIZE_LIMIT) + ' bytes',
                             102)
 
@@ -121,9 +137,10 @@ class KeyValueStore:
 
             # Put the key in the database
             cursor.execute(f"INSERT INTO key_value_store \
-                VALUES ('{key}', '{json.dumps(value)}', '{time.time()}', '{ttl}')")
+                VALUES ('{key}', '{string_value}', '{time.time()}', '{ttl}')")
 
-            self._conn.commit()
+        self._uncommitted_size += key_len + value_len
+        self._commit()
 
     def read(self, key):
         """
@@ -163,7 +180,16 @@ class KeyValueStore:
 
             # Delete the record
             cursor.execute(f"DELETE FROM key_value_store WHERE key = '{key}'")
-            self._conn.commit()
+
+        self._commit()
+
+    def optimize_file(self):
+        """
+        :return: Void
+        Optimizes the file to take minimal space on disk
+        It is a heavy operation and no queries will be processed until it is finished
+        """
+        self._conn.execute(f"VACUUM")  # Rebuilds the database
 
     @classmethod
     def _create_table(cls, conn):
@@ -193,6 +219,36 @@ class KeyValueStore:
         page_size = conn.execute('PRAGMA PAGE_SIZE').fetchone()[0]
         return page_count * page_size
 
+    def _commit(self):
+        """
+        :return: Void
+        Commits the transactions if
+            - number of uncommitted transactions has reached the limit, or
+            - size of uncommitted transactions has reached the limit
+        """
+        self._uncommitted_transactions += 1
+        if self._uncommitted_transactions >= KeyValueStore._MAX_UNCOMMITTED_TRANSACTIONS_ALLOWED\
+                or self._uncommitted_size >= KeyValueStore._MAX_UNCOMMITTED_SIZE_ALLOWED:
+
+            with self._lock:
+                self._conn.commit()
+
+                self._uncommitted_transactions = 0
+                self._uncommitted_size = 0
+
+    def _periodic_commit(self):
+        """
+        :return:
+        Commits all the transactions before every _PERIODIC_COMMIT_TIME seconds
+        """
+        while True:
+            with self._lock:)
+                self._conn.commit()
+
+            # Sleep for some random time
+            time.sleep(KeyValueStore._PERIODIC_COMMIT_TIME/2
+                       + random.randrange(0, KeyValueStore._PERIODIC_COMMIT_TIME/2))
+
     def _check_for_ttl(self, key):
         """
         :param key: A string for the key
@@ -206,19 +262,23 @@ class KeyValueStore:
                                        WHERE key={key} \
                                        AND ttl != -1 \
                                        AND {time.time()} - timestamp > ttl")
-            self._conn.commit()
 
-    def _check_all_for_ttl(self):
+    def _periodic_check_all_for_ttl(self):
         """
         :return: Void
-        Deletes all the expired keys and rebuilds the database to occupy minimal amount of disk space
+        Keep deleting all the expired keys
         """
-        self._conn.execute(f"DELETE FROM key_value_store \
-                           WHERE ttl != -1 \
-                           AND {time.time()} - timestamp > ttl")
+        while True:
+            # Sleep for some random time
+            time.sleep(KeyValueStore._PERIODIC_COMMIT_TIME / 2
+                       + random.randrange(0, KeyValueStore._PERIODIC_COMMIT_TIME / 2))
 
-        self._conn.commit()
-        self._conn.execute(f"VACUUM")  # Rebuilds the database
+            # Get the lock
+            with self._lock:
+                # Delete teh expired keys
+                self._conn.execute(f"DELETE FROM key_value_store \
+                                   WHERE ttl != -1 \
+                                   AND {time.time()} - timestamp > ttl")
 
     def _debug_print_all_keys(self):
         cursor = self._conn.cursor()
@@ -228,18 +288,19 @@ class KeyValueStore:
 
     def _debug_insert_n_keys(self, n, ttl=-1):
         cursor = self._conn.cursor()
-        mx = cursor.execute("SELECT MAX(key) FROM key_value_store").fetchone()[0]
-        mx = int(mx) + 1
 
         json_object = {
             'first_key': 'first valeh djisf jskadl hfidsnv kdfhjishdn fksdhjif',
             'second_key': 'second_valuej kfdsjf klsdjf klsdjf ksdlfj  '
         }
+        for i in range(5):
+            json_object[i] = json.loads(json.dumps(json_object))
+        print(json_object)
         for i in range(n):
-            cursor.execute(f"INSERT INTO key_value_store VALUES( \
-            '{mx}', '{json.dumps(json_object)}', {time.time()}, {ttl})")
+            key = random.randint(0, 1000000000000000000)
+            try:
+                self.create(str(key), json_object, ttl)
+            except Exception as e:
+                print(e)
 
-            mx += 1
-
-        self._conn.commit()
 
