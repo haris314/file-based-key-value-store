@@ -10,7 +10,8 @@ Most operating systems should be compatibile as no operating system dependent li
 
 ## Instantiating an object
 >store = KeyValueStore.open(filename)
->or
+
+or
 >store = KeyValueStore.open(filename, fileaddress)
 
 **filename** is the name of the file where the data will be stored
@@ -19,7 +20,8 @@ Note that if the given file exists, it opens it otherwise, it creates a new file
 **KeyValueStore's objects MUST NEVER be created by using the default constructor**
 ## Create
 >store.create(key, value)
->or
+
+or
 >store.create(key, value, ttl)
 
 **key** must be a string
