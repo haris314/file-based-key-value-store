@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1dc73d69-15b0-4c4a-bb69-fcad6eed4386" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/another_process_for_testing.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_kvs.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/exception.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/kvs.py" beforeDir="false" afterPath="$PROJECT_DIR$/kvs.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -24,46 +25,78 @@
         <counts>
           <entry key="haris" value="1" />
           <entry key="haris-journal" value="1" />
-          <entry key="py" value="6" />
+          <entry key="py" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="PLAIN_TEXT" value="2" />
-          <entry key="Python" value="6" />
+          <entry key="Python" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="Python Console" value="6260" />
-          <entry key="py" value="11108" />
+          <entry key="Python Console" value="7266" />
+          <entry key="py" value="16888" />
+          <entry key="txt" value="348" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="17368" />
+          <entry key="PLAIN_TEXT" value="348" />
+          <entry key="Python" value="24154" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/kvs.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-4654">
-              <caret line="18" column="21" lean-forward="true" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
+            <state relative-caret-position="280">
+              <caret line="14" column="49" selection-start-line="14" selection-start-column="49" selection-end-line="14" selection-end-column="49" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
-                <element signature="e#7664#7814#0" />
-                <marker date="1609425741611" expanded="true" signature="508:509" ph="..." />
-                <marker date="1609425741611" expanded="true" signature="508:549" ph="..." />
-                <marker date="1609425741611" expanded="true" signature="587:588" ph="..." />
-                <marker date="1609425741611" expanded="true" signature="587:592" ph="..." />
-                <marker date="1609425741611" expanded="true" signature="587:965" ph="..." />
-                <marker date="1609425741611" expanded="true" signature="1533:1890" ph="..." />
-                <marker date="1609425741611" expanded="true" signature="1953:3487" ph="..." />
-                <marker date="1609425741611" expanded="true" signature="8385:8786" ph="..." />
+                <marker date="1609448286400" expanded="true" signature="508:509" ph="..." />
+                <marker date="1609448286400" expanded="true" signature="508:549" ph="..." />
+                <marker date="1609448286400" expanded="true" signature="587:588" ph="..." />
+                <marker date="1609448286400" expanded="true" signature="587:592" ph="..." />
+                <marker date="1609448286400" expanded="true" signature="587:965" ph="..." />
+                <marker date="1609448286400" expanded="true" signature="1533:1890" ph="..." />
+                <marker date="1609448286400" expanded="true" signature="1953:3488" ph="..." />
+                <marker date="1609448286400" expanded="true" signature="8014:8393" ph="..." />
+                <marker date="1609448286400" expanded="true" signature="9063:9463" ph="..." />
+                <marker date="1609448286400" expanded="true" signature="10452:10790" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/test_kvs.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="557">
+              <caret line="113" column="57" selection-start-line="113" selection-start-column="57" selection-end-line="113" selection-end-column="57" />
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
+                <marker date="1609448577975" expanded="true" signature="179:180" ph="..." />
+                <marker date="1609448577975" expanded="true" signature="179:185" ph="..." />
+                <marker date="1609448577975" expanded="true" signature="2874:4118" ph="..." />
+                <marker date="1609448577975" expanded="true" signature="4571:4577" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/another_process_for_testing.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="15" column="10" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="33" />
+              <folding>
+                <element signature="e#0#29#0" expanded="true" />
+                <marker date="1609444183863" expanded="true" signature="232:233" ph="..." />
               </folding>
             </state>
           </provider>
@@ -84,7 +117,12 @@
       <find>_commit</find>
       <find>insert</find>
       <find>insert_</find>
+      <find>optimize</find>
       <find>print</find>
+      <find>create</find>
+      <find>does not</find>
+      <find>periodic</find>
+      <find>100</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -93,7 +131,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/another_process_for_testing.py" />
         <option value="$PROJECT_DIR$/kvs.py" />
+        <option value="$PROJECT_DIR$/test_kvs.py" />
       </list>
     </option>
   </component>
@@ -138,7 +178,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python tests.Twisted Trial for test_kvs.TestKVS.test_another_process">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="file-based-key-value-store" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -169,6 +209,62 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Twisted Trial for test_kvs.TestKVS" type="tests" factoryName="Twisted Trial" temporary="true" nameIsGenerated="true">
+      <module name="file-based-key-value-store" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_kvs.TestKVS&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Twisted Trial for test_kvs.TestKVS.test_another_process" type="tests" factoryName="Twisted Trial" temporary="true" nameIsGenerated="true">
+      <module name="file-based-key-value-store" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_kvs.TestKVS.test_another_process&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Twisted Trial for test_kvs.TestKVS.test_create_read" type="tests" factoryName="Twisted Trial" temporary="true" nameIsGenerated="true">
+      <module name="file-based-key-value-store" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_kvs.TestKVS.test_create_read&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Twisted Trial for test_kvs.TestKVS.test_multi_threading" type="tests" factoryName="Twisted Trial" temporary="true" nameIsGenerated="true">
+      <module name="file-based-key-value-store" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_kvs.TestKVS.test_multi_threading&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
     <configuration default="true" type="tests" factoryName="Doctests">
@@ -247,6 +343,20 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Python tests.Twisted Trial for test_kvs.TestKVS.test_create_read" />
+      <item itemvalue="Python tests.Twisted Trial for test_kvs.TestKVS" />
+      <item itemvalue="Python tests.Twisted Trial for test_kvs.TestKVS.test_multi_threading" />
+      <item itemvalue="Python tests.Twisted Trial for test_kvs.TestKVS.test_another_process" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python tests.Twisted Trial for test_kvs.TestKVS.test_another_process" />
+        <item itemvalue="Python tests.Twisted Trial for test_kvs.TestKVS.test_multi_threading" />
+        <item itemvalue="Python tests.Twisted Trial for test_kvs.TestKVS" />
+        <item itemvalue="Python tests.Twisted Trial for test_kvs.TestKVS.test_create_read" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -259,22 +369,70 @@
       <option name="presentableId" value="Default" />
       <updated>1609257536078</updated>
     </task>
+    <task id="LOCAL-00001" summary="Optimizations made&#10;Periodic commit instead of committing on every transaction&#10;Periodic deletion of expired keys">
+      <created>1609426165239</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1609426165239</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Better handling of limited file size constraint&#10;Everytime database is at capacity, check_all_for_ttl() is called&#10;db size is calculated ignoring the free pages">
+      <created>1609430243823</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1609430243823</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
+  </component>
+  <component name="TestHistory">
+    <history-entry file="Twisted_Trial_for_test_kvs_TestKVS_test_multi_threading - 2021.01.01 at 00h 22m 21s.xml">
+      <configuration name="Twisted Trial for test_kvs.TestKVS.test_multi_threading" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Twisted_Trial_for_test_kvs_TestKVS_test_multi_threading - 2021.01.01 at 00h 23m 02s.xml">
+      <configuration name="Twisted Trial for test_kvs.TestKVS.test_multi_threading" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Twisted_Trial_for_test_kvs_TestKVS_test_multi_threading - 2021.01.01 at 00h 23m 47s.xml">
+      <configuration name="Twisted Trial for test_kvs.TestKVS.test_multi_threading" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Twisted_Trial_for_test_kvs_TestKVS_test_multi_threading - 2021.01.01 at 00h 24m 02s.xml">
+      <configuration name="Twisted Trial for test_kvs.TestKVS.test_multi_threading" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Twisted_Trial_for_test_kvs_TestKVS - 2021.01.01 at 00h 26m 45s.xml">
+      <configuration name="Twisted Trial for test_kvs.TestKVS" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Twisted_Trial_for_test_kvs_TestKVS_test_multi_threading - 2021.01.01 at 00h 28m 13s.xml">
+      <configuration name="Twisted Trial for test_kvs.TestKVS.test_multi_threading" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Twisted_Trial_for_test_kvs_TestKVS_test_multi_threading - 2021.01.01 at 00h 28m 31s.xml">
+      <configuration name="Twisted Trial for test_kvs.TestKVS.test_multi_threading" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Twisted_Trial_for_test_kvs_TestKVS_test_multi_threading - 2021.01.01 at 00h 28m 59s.xml">
+      <configuration name="Twisted Trial for test_kvs.TestKVS.test_multi_threading" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Twisted_Trial_for_test_kvs_TestKVS_test_multi_threading - 2021.01.01 at 00h 29m 14s.xml">
+      <configuration name="Twisted Trial for test_kvs.TestKVS.test_multi_threading" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Twisted_Trial_for_test_kvs_TestKVS_test_another_process - 2021.01.01 at 00h 37m 27s.xml">
+      <configuration name="Twisted Trial for test_kvs.TestKVS.test_another_process" configurationId="tests" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22444679" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32939914" />
-      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32939914" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="7" visible="true" weight="0.32939914" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32939914" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32939914" />
       <window_info anchor="bottom" id="Python Console" order="9" sideWeight="0.49947312" weight="0.32939914" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50052685" side_tool="true" weight="0.32939914" />
@@ -283,8 +441,23 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
   </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Optimizations made&#10;Periodic commit instead of committing on every transaction&#10;Periodic deletion of expired keys" />
+    <MESSAGE value="Better handling of limited file size constraint&#10;Everytime database is at capacity, check_all_for_ttl() is called&#10;db size is calculated ignoring the free pages" />
+    <option name="LAST_COMMIT_MESSAGE" value="Better handling of limited file size constraint&#10;Everytime database is at capacity, check_all_for_ttl() is called&#10;db size is calculated ignoring the free pages" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/haris" />
@@ -308,21 +481,47 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/another_process_for_testing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="15" column="10" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="33" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+            <marker date="1609444183863" expanded="true" signature="232:233" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/kvs.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4654">
-          <caret line="18" column="21" lean-forward="true" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
+        <state relative-caret-position="280">
+          <caret line="14" column="49" selection-start-line="14" selection-start-column="49" selection-end-line="14" selection-end-column="49" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
-            <element signature="e#7664#7814#0" />
-            <marker date="1609425741611" expanded="true" signature="508:509" ph="..." />
-            <marker date="1609425741611" expanded="true" signature="508:549" ph="..." />
-            <marker date="1609425741611" expanded="true" signature="587:588" ph="..." />
-            <marker date="1609425741611" expanded="true" signature="587:592" ph="..." />
-            <marker date="1609425741611" expanded="true" signature="587:965" ph="..." />
-            <marker date="1609425741611" expanded="true" signature="1533:1890" ph="..." />
-            <marker date="1609425741611" expanded="true" signature="1953:3487" ph="..." />
-            <marker date="1609425741611" expanded="true" signature="8385:8786" ph="..." />
+            <marker date="1609448286400" expanded="true" signature="508:509" ph="..." />
+            <marker date="1609448286400" expanded="true" signature="508:549" ph="..." />
+            <marker date="1609448286400" expanded="true" signature="587:588" ph="..." />
+            <marker date="1609448286400" expanded="true" signature="587:592" ph="..." />
+            <marker date="1609448286400" expanded="true" signature="587:965" ph="..." />
+            <marker date="1609448286400" expanded="true" signature="1533:1890" ph="..." />
+            <marker date="1609448286400" expanded="true" signature="1953:3488" ph="..." />
+            <marker date="1609448286400" expanded="true" signature="8014:8393" ph="..." />
+            <marker date="1609448286400" expanded="true" signature="9063:9463" ph="..." />
+            <marker date="1609448286400" expanded="true" signature="10452:10790" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_kvs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="557">
+          <caret line="113" column="57" selection-start-line="113" selection-start-column="57" selection-end-line="113" selection-end-column="57" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+            <marker date="1609448577975" expanded="true" signature="179:180" ph="..." />
+            <marker date="1609448577975" expanded="true" signature="179:185" ph="..." />
+            <marker date="1609448577975" expanded="true" signature="2874:4118" ph="..." />
+            <marker date="1609448577975" expanded="true" signature="4571:4577" ph="..." />
           </folding>
         </state>
       </provider>

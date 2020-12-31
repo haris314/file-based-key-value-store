@@ -13,7 +13,7 @@ class KeyValueStore:
     _KEY_SIZE_LIMIT = 32  # Chars
     _VALUE_SIZE_LIMIT = 16 * 1024  # Bytes
     _MAX_UNCOMMITTED_TRANSACTIONS_ALLOWED = 10000
-    _MAX_UNCOMMITTED_SIZE_ALLOWED = 15 * 1024 * 1025  # Bytes
+    _MAX_UNCOMMITTED_SIZE_ALLOWED = 15 * 1024 * 1024  # Bytes
     _PERIODIC_COMMIT_TIME = 2 * 60  # Seconds
 
     _all_objects = {}
@@ -92,7 +92,7 @@ class KeyValueStore:
             try:
                 system_lock.acquire(timeout=1)
             except Timeout:
-                raise Exception("Some other process is already accessing the desired file", 10)
+                raise Exception("Some other process is already accessing the desired file", 100)
 
             # Create the object
             new_obj = KeyValueStore(conn, system_lock)
@@ -231,14 +231,13 @@ class KeyValueStore:
         if self._db_size() >= self._DB_SIZE_LIMIT:
 
             # See if there are any expired keys present
-            self.check_all_for_ttl()
+            self._check_all_for_ttl()
 
             # See if the database size decreased
             if self._db_size() >= self._DB_SIZE_LIMIT:
                 return True
 
         return False
-
 
     def _commit(self):
         """
@@ -294,9 +293,9 @@ class KeyValueStore:
             time.sleep(KeyValueStore._PERIODIC_COMMIT_TIME / 2
                        + random.randrange(0, KeyValueStore._PERIODIC_COMMIT_TIME / 2))
             with self._lock:
-                self.check_all_for_ttl()
+                self._check_all_for_ttl()
 
-    def check_all_for_ttl(self):
+    def _check_all_for_ttl(self):
         """
         :return: Void
 
@@ -314,7 +313,13 @@ class KeyValueStore:
             print(row)
 
     def _debug_insert_n_keys(self, n, ttl=-1):
-        cursor = self._conn.cursor()
+        """
+        :param n: Integer representing how many keys to insert
+        :param ttl: Positive integer
+        :return: Void
+
+        Creates n keys with an arbitrary value
+        """
 
         json_object = {
             'first_key': 'first valeh djisf jskadl hfidsnv kdfhjishdn fksdhjif',
