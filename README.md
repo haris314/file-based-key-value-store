@@ -15,8 +15,11 @@ or
 >store = KeyValueStore.open(filename, fileaddress)
 
 **filename** is the name of the file where the data will be stored
+
 **fileaddress** is an optional parameter which is the address of the folder where you want the storage file to be stored. If not provided, the storage file will be stored in the **default directory** which will be discussed later.
+
 Note that if the given file exists, it opens it otherwise, it creates a new file but the given directory (if provided) must be a valid existing directory.
+
 **KeyValueStore's objects MUST NEVER be created by using the default constructor**
 ## Create
 >store.create(key, value)
@@ -25,13 +28,17 @@ or
 >store.create(key, value, ttl)
 
 **key** must be a string
+
 **value** must be a JSON object
+
 Throws exception if the key already exists or the storage file is at capacity.
+
 **ttl (Time To Live)** is an optional parameter whose value must be a positive integer. If provided, it causes the key to be automatically deleted after ttl seconds. If not provided, the key lives in the storage until deleted intentionally.
 ## Read
 > store.read(key)
 
 **Returns** a JSON object corresponding to the given key.
+
 Throws exception if the key doesn't exist.
 ## Delete
 > store.delete(key)
@@ -71,9 +78,11 @@ Exception code  | Exception meaning
 
 # Testing
 Some major unit tests are present in test_kvs.py. 
+
 **Note: Before running unit tests,
 Please make sure that _DEFAULT_DIRECTORY is set to empty string before testing, and
 Delete any file named 'test' (if exists) in the directory where kvs.py exists**
+
 Please check test_kvs.py to get more information about what tests are provided.
 
 # Other files
