@@ -129,7 +129,7 @@ class KeyValueStore:
             # Check if the key already exists
             result = cursor.execute(f"SELECT * FROM key_value_store WHERE key = '{key}'").fetchone()
             if result:
-                raise Exception("Given key already exists", 201)
+                raise Exception("The given key already exists", 201)
 
             # Check if the database has already exceeded the _DB_SIZE_LIMIT
             if self._is_db_oversized():
