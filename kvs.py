@@ -132,7 +132,7 @@ class KeyValueStore:
                 raise Exception("Given key already exists", 201)
 
             # Check if the database has already exceeded the _DB_SIZE_LIMIT
-            if KeyValueStore._db_size(self._conn) >= KeyValueStore._DB_SIZE_LIMIT:
+            if self._is_db_oversized():
                 raise Exception("Can't store any more keys because file is already at its maximum capacity", 103)
 
             # Put the key in the database
@@ -189,7 +189,9 @@ class KeyValueStore:
         Optimizes the file to take minimal space on disk
         It is a heavy operation and no queries will be processed until it is finished
         """
-        self._conn.execute(f"VACUUM")  # Rebuilds the database
+        with self._lock:
+            self._conn.commit()  # Must commit otherwise vacuum won't work
+            self._conn.execute(f"VACUUM")  # Rebuilds the database
 
     @classmethod
     def _create_table(cls, conn):
@@ -210,14 +212,33 @@ class KeyValueStore:
         """)
         conn.commit()
 
-    @classmethod
-    def _db_size(cls, conn):
+    def _db_size(self):
         """
         :return: The size (in bytes) of the database that this object is connected to
         """
-        page_count = conn.execute('PRAGMA PAGE_COUNT').fetchone()[0]
-        page_size = conn.execute('PRAGMA PAGE_SIZE').fetchone()[0]
-        return page_count * page_size
+        page_count = self._conn.execute('PRAGMA PAGE_COUNT').fetchone()[0]
+        free_page_count = self._conn.execute('PRAGMA FREELIST_COUNT').fetchone()[0]
+        page_size = self._conn.execute('PRAGMA PAGE_SIZE').fetchone()[0]
+
+        # Only used pages should be counted to calculate the size
+        return (page_count - free_page_count) * page_size
+
+    def _is_db_oversized(self):
+        """
+        :return: Boolean
+        """
+        # Check if the database has already exceeded the _DB_SIZE_LIMIT
+        if self._db_size() >= self._DB_SIZE_LIMIT:
+
+            # See if there are any expired keys present
+            self.check_all_for_ttl()
+
+            # See if the database size decreased
+            if self._db_size() >= self._DB_SIZE_LIMIT:
+                return True
+
+        return False
+
 
     def _commit(self):
         """
@@ -242,7 +263,7 @@ class KeyValueStore:
         Commits all the transactions before every _PERIODIC_COMMIT_TIME seconds
         """
         while True:
-            with self._lock:)
+            with self._lock:
                 self._conn.commit()
 
             # Sleep for some random time
@@ -259,26 +280,32 @@ class KeyValueStore:
         with self._lock:
             # Get the record from the database
             self._conn.execute(f"DELETE FROM key_value_store \
-                                       WHERE key={key} \
+                                       WHERE key='{key}' \
                                        AND ttl != -1 \
                                        AND {time.time()} - timestamp > ttl")
 
     def _periodic_check_all_for_ttl(self):
         """
         :return: Void
-        Keep deleting all the expired keys
+        Keep calling check_all_for_tll() periodically
         """
         while True:
             # Sleep for some random time
             time.sleep(KeyValueStore._PERIODIC_COMMIT_TIME / 2
                        + random.randrange(0, KeyValueStore._PERIODIC_COMMIT_TIME / 2))
-
-            # Get the lock
             with self._lock:
-                # Delete teh expired keys
-                self._conn.execute(f"DELETE FROM key_value_store \
-                                   WHERE ttl != -1 \
-                                   AND {time.time()} - timestamp > ttl")
+                self.check_all_for_ttl()
+
+    def check_all_for_ttl(self):
+        """
+        :return: Void
+
+        Note: The calling method must take care of lock
+        """
+        # Delete teh expired keys
+        self._conn.execute(f"DELETE FROM key_value_store \
+                                        WHERE ttl != -1 \
+                                        AND {time.time()} - timestamp > ttl")
 
     def _debug_print_all_keys(self):
         cursor = self._conn.cursor()
