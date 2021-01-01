@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1dc73d69-15b0-4c4a-bb69-fcad6eed4386" name="Default Changelist" comment="Wrote reademe.md">
-      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+    <list default="true" id="1dc73d69-15b0-4c4a-bb69-fcad6eed4386" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
@@ -159,10 +158,10 @@
     </configuration>
     <list>
       <item itemvalue="Python.driver_program" />
-      <item itemvalue="Python tests.Twisted Trial for test_kvs.TestKVS" />
-      <item itemvalue="Python tests.Twisted Trial for test_kvs.TestKVS.test_another_process" />
       <item itemvalue="Python tests.Twisted Trial for test_kvs.TestKVS.test_create_read" />
+      <item itemvalue="Python tests.Twisted Trial for test_kvs.TestKVS" />
       <item itemvalue="Python tests.Twisted Trial for test_kvs.TestKVS.test_multi_threading" />
+      <item itemvalue="Python tests.Twisted Trial for test_kvs.TestKVS.test_another_process" />
     </list>
     <recent_temporary>
       <list>
@@ -214,7 +213,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609453951033</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Added requirements.txt and mentioned testing command in README.md">
+      <created>1609500901981</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1609500901982</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -298,7 +304,8 @@
     <MESSAGE value="Better handling of limited file size constraint&#10;Everytime database is at capacity, check_all_for_ttl() is called&#10;db size is calculated ignoring the free pages" />
     <MESSAGE value="Added tests and some other things&#10;7 tests were added" />
     <MESSAGE value="Wrote reademe.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="Wrote reademe.md" />
+    <MESSAGE value="Added requirements.txt and mentioned testing command in README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added requirements.txt and mentioned testing command in README.md" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/haris" />

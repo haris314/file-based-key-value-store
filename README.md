@@ -84,7 +84,7 @@ Exception code  | Exception meaning
 # Testing
 Some major unit tests are present in test_kvs.py. 
 
-**Note: Before running unit tests, please make sure that, 
+**Note: Before running unit tests, please make sure that** 
 1. _DEFAULT_DIRECTORY is set to empty string, and
 2. Delete any file named 'test' (if exists) in the directory where kvs.py exists
 
