@@ -5,6 +5,11 @@ This file-based key-value data store supports the basic CRD (create, read, and d
 Most operating systems should be compatibile as no operating system dependent library is used. However, it was developed on windows and is also tested only on windows.
 
 # Usage
+
+## Installing requirements
+Execute the following command-
+> pip install -r requirements.txt 
+
 ## Importing
 > from kvs import KeyValueStore
 
@@ -79,13 +84,17 @@ Exception code  | Exception meaning
 # Testing
 Some major unit tests are present in test_kvs.py. 
 
-**Note: Before running unit tests,
-Please make sure that _DEFAULT_DIRECTORY is set to empty string before testing, and
-Delete any file named 'test' (if exists) in the directory where kvs.py exists**
+**Note: Before running unit tests, please make sure that, 
+1. _DEFAULT_DIRECTORY is set to empty string, and
+2. Delete any file named 'test' (if exists) in the directory where kvs.py exists
+
+To run the unittests, run
+> python -m unittest
 
 Please check test_kvs.py to get more information about what tests are provided.
 
 # Other files
+
 ## driver_program.py
 It contains a basic driver program which lets the user create, read, and delete keys.
 
